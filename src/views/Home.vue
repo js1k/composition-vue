@@ -1,31 +1,27 @@
 <template>
 <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
     <div>{{refTst}}</div>
+    <child :refTst="refTst"/>
 </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { reactive, ref } from '@vue/composition-api';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import child from './child.vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
     name: 'Home',
     components: {
-        // eslint-disable-next-line vue/no-unused-components
-        HelloWorld
+        child
     },
-    setup(props, context) {
+    setup() {
         const refTst = ref(0);
-        console.log(props, context);
         // let txt = 123;
         function testReactive() {
             setInterval(() => {
                 // txt++;
                 refTst.value += 1;
-                console.log(refTst);
+                // console.log(refTst);
             }, 1000);
         }
         testReactive();
